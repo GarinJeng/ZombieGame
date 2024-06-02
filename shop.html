@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Button Grid</title>
+  <style>
+    .button-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+      justify-content: center;
+    }
+
+    .button {
+      width: 200px;
+      height: 100px;
+      background-color: lightblue;
+      text-align: center;
+      line-height: 50px;
+    }
+    .centered-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <textareareadonly class="text-box" id="outM">Money: </textareareadonly>
+  <div class="button-container">
+    <button class="button" onclick = "button1()">Fire Rate</button>
+    <button class="button" onclick = "button2()">Speed</button>
+    <button class="button" onclick = "button4()">Lives</button>
+    <button class="button" onclick = "button5()">Money Multiplier</button>
+  </div>
+  <textareareadonly class="text-box" id="outFs">Fire Rate: 0/4 Cost: 60 </textareareadonly>
+  <br>
+  <textareareadonly class="text-box" id="outS">Speed: 0/3 Cost: 100 </textareareadonly>
+  <br>
+  <textareareadonly class="text-box" id="outL2">Lives: 0/5 Cost: 100 </textareareadonly>
+  <br>
+  <textareareadonly class="text-box" id="outMM">Money Multiplier: 0/5 Cost: 20 </textareareadonly>
+  <br>
+  <button class="centered-button" onclick="resume()">Go to Game</button>
+</body>
+<script src="script.js"></script>
+  <script>
+    lives = parseInt(new URLSearchParams(window.location.search).get('lives'));
+    S = parseInt(new URLSearchParams(window.location.search).get('S'));
+    fireS =  parseInt(new URLSearchParams(window.location.search).get('fireS'));
+    MoneyX = parseInt(new URLSearchParams(window.location.search).get('MoneyX'));
+    money = parseInt(new URLSearchParams(window.location.search).get('Money'));
+    countB1 = parseInt(new URLSearchParams(window.location.search).get('c1'));
+    countB2 = parseInt(new URLSearchParams(window.location.search).get('c2'));
+    countB4 = parseInt(new URLSearchParams(window.location.search).get('c4'));
+    countB5 = parseInt(new URLSearchParams(window.location.search).get('c5'));
+    outM.innerHTML = "Money: "+ money
+    outFs.innerHTML = "Fire Rate: "+countB1+"/4 Cost: " + cost1[countB1]
+    if (countB1 == 4){
+      //setText("button1", "Fire Rate: Max level");
+      outFs.innerHTML = "Fire Rate: Max level"
+    }
+    outS.innerHTML = "Speed: "+countB2+"/3 Cost: " + cost2[countB2]
+    if (countB2 == 3){
+      //setText("button2", "Speed: Max level");
+       outS.innerHTML = "Speed: Max level"
+    }
+    outL2.innerHTML = "Lives: "+countB4+"/5 Cost: " + cost4[countB4]
+    if (countB4 == 5){
+      //setText("button4", "Extra Lives: Max level");
+      outL2.innerHTML = "Lives: Max level"
+    }
+    outMM.innerHTML = "Money Multiplier: "+countB5+"/5 Cost: " + cost5[countB5]
+    if (countB5 == 5){
+      //setText("button5", "Money X: Max level");
+      outMM.innerHTML = "Money Multiplier: Max level"
+    }
+      </script>
+</html>
