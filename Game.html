@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width", initial-scale=1.0>
+  <title>Full Screen Canvas</title>
+  <style>
+    body, html {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column,row;
+      
+      background-color: lightblue;
+    }
+    canvas{
+      background-color: darkred;
+    }
+
+    stats {
+      display: flex;
+      flex-direction: column;
+      border: 10px lightblue;
+    }
+    textareareadonly {
+      font-size: 20px;
+      font-family: 'Times New Roman', Times, serif
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" height="500px" width="500px" style="border:5px solid grey"></canvas>
+  <div class="stats">
+    <textareareadonly class="text-box" id="outM2">Money: </textareareadonly>
+    <br>
+    <textareareadonly class="text-box" id="outL">Lives: </textareareadonly>
+  </div>
+</body>
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener("keydown", moveRect, false);
+    window.addEventListener("keyup", moveRect2, false);
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d"); 
+    let x = 0;
+    let y = 0;
+    lives = parseInt(new URLSearchParams(window.location.search).get('lives'));
+    S = parseInt(new URLSearchParams(window.location.search).get('S'));
+    fireS =  parseInt(new URLSearchParams(window.location.search).get('fireS'));
+    MoneyX = parseInt(new URLSearchParams(window.location.search).get('MoneyX'));
+    money = parseInt(new URLSearchParams(window.location.search).get('Money'));
+    countB1 = parseInt(new URLSearchParams(window.location.search).get('c1'));
+    countB2 = parseInt(new URLSearchParams(window.location.search).get('c2'));
+    countB4 = parseInt(new URLSearchParams(window.location.search).get('c4'));
+    countB5 = parseInt(new URLSearchParams(window.location.search).get('c5'));
+    var img = new Image();
+    img.onload = function () {
+      ctx.drawImage(img, x, y, 1000, 1000);
+    }
+      img.src = "background2.jpg";
+      
+    var img2 = new Image();
+    img2.onload = function () {
+      ctx.drawImage(img2, 250, 250, 20, 20)
+      //ctx.drawImage(img2, Math.floor((window.innerWidth)/8)-10,  Math.floor((window.innerHeight)/8)-10);
+    }
+      img2.src = "Red_square.svg";
+    var projec = new Image();
+    projec.onload = function () {
+      ctx.drawImage(projec, 250, 250 , 5, 5);
+    }
+        projec.src = "projectileV2.png";
+    invins = 1
+    setxy(x,y)
+    run(window.innerWidth,window.innerHeight)
+    summonEnemys();
+  </script>
+</html>
